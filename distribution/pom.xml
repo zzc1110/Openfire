@@ -128,12 +128,12 @@
             <scope>provided</scope>
         </dependency>
         <!-- search is a dependency, but has to be renamed and placed in the plugins folder so is explicitly copied -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.igniterealtime.openfire.plugins</groupId>
             <artifactId>search</artifactId>
-            <version>1.7.3</version>
+            <version>1.7.4-SNAPSHOT</version>
             <classifier>openfire-plugin-assembly</classifier>
             <scope>provided</scope>
-        </dependency>-->
+        </dependency>
     </dependencies>
 </project>
