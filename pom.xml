@@ -182,7 +182,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -201,14 +201,15 @@
             </build>
         </profile>
 
-        <profile>
+        <!--漏洞检测？-->
+        <!--<profile>
             <id>deps</id>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.owasp</groupId>
                         <artifactId>dependency-check-maven</artifactId>
-                        <version>6.0.4</version>
+                        <groupId>org.owasp</groupId>
+                        <version>6.0.4</version>>
                         <configuration>
                             <suppressionFiles>
                                 <suppressionFile>.dependency-check-suppressions.xml</suppressionFile>
@@ -224,7 +225,7 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
+        </profile>-->
 
     </profiles>
 
