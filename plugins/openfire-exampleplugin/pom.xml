@@ -23,77 +23,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.igniterealtime.openfire.plugins</groupId>
-                        <artifactId>openfire-plugin-assembly-descriptor</artifactId>
-                        <version>4.7.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>${project.artifactId}</finalName>
-                            <attach>false</attach>
-                            <descriptorRefs>
-                                <descriptorRef>openfire-plugin-assembly</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Admin console pages -->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-jspc-maven-plugin</artifactId>
-                <version>9.2.14.v20151106</version>
-                <configuration>
-                    <webAppSourceDirectory>${project.build.sourceDirectory}/../web</webAppSourceDirectory>
-                    <webXml>${project.build.sourceDirectory}/../web/WEB-INF/web.xml</webXml>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>jspc</id>
-                        <goals>
-                            <goal>jspc</goal>
-                        </goals>
-                        <configuration>
-                            <jspc>
-                                <package>org.jivesoftware.openfire.plugin.${project.artifactId}</package>
-                            </jspc>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.igniterealtime.openfire</groupId>
-                        <artifactId>xmppserver</artifactId>
-                        <version>${openfire.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.igniterealtime.openfire</groupId>
-                        <artifactId>webadmintld</artifactId>
-                        <version>${openfire.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>3.0.0</version>
-                <extensions>true</extensions>
-            </plugin>
             <!-- maven 资源插件, 这个插件主要把一些外部文件变成打包时的资源文件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -102,8 +31,9 @@
                 <executions>
                     <execution>
                         <phase>install</phase>
-                        <!-- resources 和 copy-resources, 如果是resources,
-                        则直接会在jar包里体现, 如果是copy-resources, 那还必须指定要copy的目标文件夹位置 -->
+                        <!-- resources 和 copy-resources,
+                        如果是resources, 则直接会在jar包里体现,
+                        如果是copy-resources, 那还必须指定要copy的目标文件夹位置 -->
                         <goals>
                             <goal>resources</goal>
                         </goals>
@@ -122,14 +52,6 @@
                                 <include>readme.html</include>
                             </includes>
                         </resource>
-
-                        <resource>
-                            <directory>${project.basedir}/src/main/web</directory>
-                            <!-- jar包目标位置, 下面的意思是会在jar的根目录下建立web文件夹,
-                            并且把src/main/web下的所有文件都copy进去 -->
-                            <targetPath>web</targetPath>
-                        </resource>
-
                     </resources>
                 </configuration>
             </plugin>
